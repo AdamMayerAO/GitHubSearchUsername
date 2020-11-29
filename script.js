@@ -14,11 +14,13 @@ function findUsername(searchUser){
 }
 
 function displayResults(responseJson){
-  console.log(responseJson[0])
-  const userURL = responseJson[0].owner.html_url
-  const userName = responseJson[0].name
+  $('#userName').append(`<a href="${responseJson[0].owner.html_url}" target="_blank">${responseJson[0].name}</a>`);
+  for (let i=0; i<responseJson.length; i++){
+  const userURL = `${responseJson[i].owner.html_url}/${responseJson[i].name}`
+  const userName = responseJson[i].name
     $('#results-list').append(`<li><a href="${userURL}" target="_blank">${userName}</a></li>`);
     $('#results').removeClass('hidden');
+  }
 }
 
 
